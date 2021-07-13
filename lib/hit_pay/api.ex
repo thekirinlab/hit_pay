@@ -8,6 +8,7 @@ defmodule HitPay.API do
 
   @production_api_path "https://api.hit-pay.com/v1/"
   @sandbox_api_path "https://api.sandbox.hit-pay.com/v1/"
+  @staging_api_path "https://api.staging.hit-pay.com/v1/"
   @api_path if Mix.env() == "production", do: @production_api_path, else: @sandbox_api_path
 
   @type method :: :get | :post | :put | :delete | :patch
@@ -54,31 +55,31 @@ defmodule HitPay.API do
   end
 
   @doc """
-  If there's no sandbox config, detect based on environment. Sandbox is used for non-production environment.
-  In config.exs, use a string, a function or a tuple, default is false
-      config :hit_pay, sandbox: System.get_env("HIT_PAY_SANDBOX")
+  If there's no environment config, detect based on environment. sandbox is used for non-production environment.
+  In config.exs, use a string, a function or a tuple. Possible environments are "sandbox", "staging", "production"
+
+      config :hit_pay, environment: "sandbox"
+  or:
+
+      config :hit_pay, environment: System.get_env("HIT_PAY_ENVIRONMENT")
 
   or:
-      config :hit_pay, sandbox: {:system, "HIT_PAY_SANDBOX"}
+      config :hit_pay, environment: {:system, "HIT_PAY_ENVIRONMENT"}
 
   or:
-      config :hit_pay, sandbox: {MyApp.Config, :HIT_PAY_SANDBOX, []}
+      config :hit_pay, environment: {MyApp.Config, :HIT_PAY_ENVIRONMENT, []}
   """
-  def sandbox do
-    Config.resolve(:sandbox)
+  def environment do
+    Config.resolve(:environment) || "production"
   end
 
   defp api_path do
-    sandbox = sandbox()
+    environment = environment()
 
-    if is_nil(sandbox) do
-      @api_path
-    else
-      if sandbox do
-        @sandbox_api_path
-      else
-        @production_api_path
-      end
+    case environment do
+      "production" -> @production_api_path
+      "staging" -> @staging_api_path
+      _ -> @sandbox_api_path
     end
   end
 
