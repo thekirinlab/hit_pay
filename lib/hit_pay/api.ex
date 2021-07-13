@@ -6,10 +6,11 @@ defmodule HitPay.API do
 
   alias HitPay.{Config, Request}
 
-  @production_api_path "https://api.hit-pay.com/v1/"
-  @sandbox_api_path "https://api.sandbox.hit-pay.com/v1/"
-  @staging_api_path "https://api.staging.hit-pay.com/v1/"
-  @api_path if Mix.env() == "production", do: @production_api_path, else: @sandbox_api_path
+  @production_api_path "https://api.hit-pay.com/v1"
+  @sandbox_api_path "https://api.sandbox.hit-pay.com/v1"
+  @staging_api_path "https://api.staging.hit-pay.com/v1"
+
+  @default_environment if Mix.env() == "production", do: "production", else: "sandbox"
 
   @type method :: :get | :post | :put | :delete | :patch
   @type headers :: %{String.t() => String.t()} | %{}
@@ -70,7 +71,7 @@ defmodule HitPay.API do
       config :hit_pay, environment: {MyApp.Config, :HIT_PAY_ENVIRONMENT, []}
   """
   def environment do
-    Config.resolve(:environment) || "production"
+    Config.resolve(:environment) || @default_environment
   end
 
   defp api_path do

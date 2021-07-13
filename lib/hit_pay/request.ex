@@ -31,7 +31,6 @@ defmodule HitPay.Request do
 
   defp handle_response({:ok, %Response{body: body, status_code: _, request_url: request_url}}) do
     Logger.error(inspect(body))
-    Logger.error(inspect(request_url))
     {:error, body}
   end
 
