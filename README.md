@@ -1,11 +1,10 @@
 # HitPay
 
-**TODO: Add description**
+An Elixir client for HitPay Payment Gateway
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `hit_pay` to your list of dependencies in `mix.exs`:
+Add to your `mix.exs` the following lines
 
 ```elixir
 def deps do
@@ -15,7 +14,33 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/hit_pay](https://hexdocs.pm/hit_pay).
+## Configuration
+
+To use HitPay API, we need to setup a dashboard account and configure api key and salt.
+
+```elixir
+config :hit_pay,
+  api_key: System.get_env("HIT_PAY_API_KEY"),
+  salt: {MyApp.Config, :hit_pay_salt, []},
+  environment: "sandbox" # or "production"
+```
+
+or
+
+```elixir
+config :hit_pay,
+  api_key: {:system, "HIT_PAY_API_KEY"},
+  salt: {:system, "HIT_PAY_SALT"},
+  environment: {:system, "HIT_PAY_ENVIRONMENT"}
+```
+
+You can also use the JSON libary of your choice, Jason is used by default
+
+```elixir
+config :hit_pay, json_library: Poison
+```
+
+## Documentation
+
+Documentation can be found at [https://hexdocs.pm/hit_pay](https://hexdocs.pm/hit_pay).
 
