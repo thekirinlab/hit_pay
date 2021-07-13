@@ -1,0 +1,21 @@
+[user]
+	name = Michael
+	email = mitanac@gmail.com
+[alias]
+	co = checkout
+	s = status
+	cm = commit -m
+	po = pull origin
+	pso = push origin
+[core]
+	editor = /usr/bin/vim
+	excludesfile = /Users/vuminhtan/.gitignore_global
+[pull]
+	rebase = true
+[credential]
+	helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
