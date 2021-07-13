@@ -10,7 +10,7 @@ by adding `hit_pay` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:hit_pay, "~> 0.1.2"}
+    {:hit_pay, "~> 0.2.0"}
   ]
 end
 ```

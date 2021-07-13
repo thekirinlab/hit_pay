@@ -102,7 +102,7 @@ defmodule HitPay.API do
 
   @spec request(String.t(), method, body, headers, list) ::
           {:ok, map} | {:error, Error.t()}
-  def request(path, method, body \\ %{}, headers \\ %{}, opts \\ []) do
+  def request(path, method, body \\ "", headers \\ %{}, opts \\ []) do
     req_url = build_path(path)
 
     req_headers =

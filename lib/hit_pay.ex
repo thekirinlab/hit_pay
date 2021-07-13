@@ -33,7 +33,7 @@ defmodule HitPay do
   """
 
   def get_payment_status(request_id) do
-    API.request("/payment-requests/#{request_id}", :get, %{})
+    API.request("/payment-requests/#{request_id}", :get)
   end
 
   @doc """
@@ -46,6 +46,6 @@ defmodule HitPay do
   """
 
   def delete_payment_request(request_id) do
-    API.request("/payment-requests/#{request_id}", :delete, %{})
+    API.request("/payment-requests/#{request_id}", :delete)
   end
 end
