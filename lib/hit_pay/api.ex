@@ -113,7 +113,8 @@ defmodule HitPay.API do
 
     encoded_body = encode_body(body, method)
 
-    @request_module.request(method, req_url, encoded_body, req_headers, opts)
+    # @request_module
+    Request.request(method, req_url, encoded_body, req_headers, opts)
   end
 
   # url encode if post, put or patch

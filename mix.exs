@@ -4,7 +4,7 @@ defmodule HitPay.MixProject do
   def project do
     [
       app: :hit_pay,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -27,6 +27,7 @@ defmodule HitPay.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:jason, "~> 1.1"},
       {:httpoison, "~> 1.0"},
+      {:plug_crypto, "~> 1.0"},
       {:ex_doc, "~> 0.18", only: :dev}
     ]
   end
