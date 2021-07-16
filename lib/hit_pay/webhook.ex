@@ -8,7 +8,7 @@ defmodule HitPay.Webhook do
   require Logger
 
   def verify_webhook?(params) do
-    Logger.debug(params)
+    Logger.debug(inspect(params))
 
     salt = API.salt()
     stripped_params = strip_params(params)
