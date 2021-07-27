@@ -3,14 +3,14 @@ defmodule HitPay.Webhook do
   Service to verify HitPay's webhook
   """
 
-  alias HitPay.API
+  alias HitPay.Config
 
   require Logger
 
   def verify_webhook?(params) do
     Logger.debug(inspect(params))
 
-    salt = API.salt()
+    salt = Config.salt()
     stripped_params = strip_params(params)
 
     signature =

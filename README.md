@@ -9,7 +9,7 @@ Add to your `mix.exs` the following lines
 ```elixir
 def deps do
   [
-    {:hit_pay, "~> 0.2.2"}
+    {:hit_pay, "~> 0.2.3"}
   ]
 end
 ```

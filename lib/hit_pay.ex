@@ -10,14 +10,13 @@ defmodule HitPay do
 
   ## Examples
 
-      iex> params = %{
-        email: "tan@thekirinlab.com",
-        redirect_url: "https://packargo.thekirinlab.com/hitpay/success",
-        webhook: "https://packargo.thekirinlab.com/hitpay/webhook",
-        amount: "599",
-        currency: "SGD"
-      }
-      iex> HitPay.create_payment_request(params)
+      params = %{
+          email: "tan@thekirinlab.com",
+          redirect_url: "https://packargo.thekirinlab.com/hitpay/success",
+          webhook: "https://packargo.thekirinlab.com/hitpay/webhook",
+          amount: "599",
+          currency: "SGD"
+      } |> HitPay.create_payment_request
   """
 
   @spec create_payment_request(map) :: {:ok, map} | {:error, any}
@@ -30,7 +29,7 @@ defmodule HitPay do
 
   ## Examples
 
-      iex> HitPay.get_payment_status("93e61239-4334-42fc-be25-6c221b982699")
+      HitPay.get_payment_status("93e61239-4334-42fc-be25-6c221b982699")
 
   """
 
@@ -44,7 +43,7 @@ defmodule HitPay do
 
   ## Examples
 
-      iex> HitPay.delete_payment_request("93e61239-4334-42fc-be25-6c221b982699")
+      HitPay.delete_payment_request("93e61239-4334-42fc-be25-6c221b982699")
 
   """
 
@@ -58,7 +57,7 @@ defmodule HitPay do
 
   ## Examples
 
-      iex> %{
+      %{
         "amount" => "35.00",
         "currency" => "SGD",
         "hmac" => "8ae5832ebc8ff5e794815e06b99cb7593dfa3e7b9e5f027f19e9af7f8442a55f",
